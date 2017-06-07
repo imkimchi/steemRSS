@@ -1,13 +1,13 @@
 import Koa from 'koa'
 import logger from 'koa-logger'
 
-import routes from './routes'
+import router from './routes'
 
 const app = new Koa()
 const port = process.env.PORT || 3000
 
 app
   .use(logger())
-  .use(routes())
+  .use(router())
 
 app.listen(port, () => console.log("[!] Server STARTED"))
