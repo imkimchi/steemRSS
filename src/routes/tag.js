@@ -5,8 +5,10 @@ import xml from 'xml'
 
 const router = new Router({ prefix: '/rss' })
 
-router.get('/:tag', async (ctx, next) => 
-    (ctx.body = await rssGenerator(ctx.params.tag)))
+router.get('/:tag', async (ctx, next) => {
+    ctx.type = 'text/xml'
+    ctx.body = await rssGenerator(ctx.params.tag)
+})
 
 const rssGenerator = async tag => {
     let feedOption = {
