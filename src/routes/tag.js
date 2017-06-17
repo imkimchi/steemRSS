@@ -11,7 +11,6 @@ router.get('/:category/:tag', async (ctx, next) => {
 })
 
 const rssGenerator = async (category, tag) => {
-
     let feedOption = {
         title: 'Steemit RSS',
         feed_url: `https://steemitrss.com/${tag}`,
@@ -28,9 +27,9 @@ const rssGenerator = async (category, tag) => {
 
 const getContent = async (category, tag) => {
     let menu = {
-        // due to lack of documentation
+        // can't feed feature add due to lack of documentation
         //'feed': await steem.api.getDiscussionsByFeed({"limit": 5}),
-        'blog': await steem.api.getDiscussionsByBlog({"tag": tag, limit:100}),
+        'blog': await steem.api.getDiscussionsByBlog({"tag": tag, limit:10}),
         'new': await steem.api.getDiscussionsByCreated({"tag": tag, "limit": 10}),
         'hot': await steem.api.getDiscussionsByHot({"tag": tag, "limit": 10}),
         'trend': await steem.api.getDiscussionsByTrending({"tag": tag, "limit": 10})
