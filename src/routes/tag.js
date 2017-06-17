@@ -3,28 +3,38 @@ import steem from 'steem'
 import RSS from 'rss'
 import xml from 'xml'
 
-const router = new Router({ prefix: '/rss' })
+const router = new Router({ prefix: '' })
 
-router.get('/:tag', async (ctx, next) => {
+router.get('/:category/:tag', async (ctx, next) => {
     ctx.type = 'text/xml'
-    ctx.body = await rssGenerator(ctx.params.tag)
+    ctx.body = await rssGenerator(ctx.params.category, ctx.params.tag)   
 })
 
-const rssGenerator = async tag => {
+const rssGenerator = async (category, tag) => {
     let feedOption = {
         title: 'Steemit RSS',
         feed_url: `https://steemitrss.com/${tag}`,
         site_url: `https://steemit.com/created/${tag}`,
         image_url: 'https://steemit.com/images/steemit-share.png',
         docs: 'https://imkimchi.github.io/steemit-rss'
+    } 
+
+    let apiResponse = await getContent(category, tag)
+    let feed = new RSS(feedOption)
+    let completedFeed = await feedItem(feed, apiResponse)
+    return completedFeed.xml()
+}
+
+const getContent = async (category, tag) => {
+    let menu = {
+        // due to lack of documentation
+        //'feed': await steem.api.getDiscussionsByFeed({"limit": 5}),
+        'new': await steem.api.getDiscussionsByCreated({"tag": tag, "limit": 10}),
+        'hot': await steem.api.getDiscussionsByHot({"tag": tag, "limit": 10}),
+        'trend': await steem.api.getDiscussionsByTrending({"tag": tag, "limit": 10})
     }
 
-    let apiResponse = await steem.api.getDiscussionsByCreated({"tag": tag, "limit": 5})
-    let feed = new RSS(feedOption)
-
-    let completedFeed = await feedItem(feed, apiResponse)
-    console.log(typeof completedFeed.xml())
-    return completedFeed.xml()
+    return menu[category]
 }
 
 const feedItem = async (feed, response) => {
