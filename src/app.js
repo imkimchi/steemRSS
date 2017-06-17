@@ -10,4 +10,4 @@ app
   .use(logger())
   .use(router())
 
-app.listen(port, () => console.log("[!] Server STARTED"))
+app.listen(port, () => console.log(`[!] Server is Running on ${port}`))
