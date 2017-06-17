@@ -27,12 +27,12 @@ const rssGenerator = async (category, tag) => {
 
 const getContent = async (category, tag) => {
     let menu = {
-        // can't feed feature add due to lack of documentation
-        //'feed': await steem.api.getDiscussionsByFeed({"limit": 5}),
-        'blog': await steem.api.getDiscussionsByBlog({"tag": tag, limit:10}),
-        'new': await steem.api.getDiscussionsByCreated({"tag": tag, "limit": 10}),
-        'hot': await steem.api.getDiscussionsByHot({"tag": tag, "limit": 10}),
-        'trend': await steem.api.getDiscussionsByTrending({"tag": tag, "limit": 10})
+        // due to lack of documentation
+        //'feed': await steem.api.getDiscussionsByFeed({'limit': 5}),
+        'blog': await steem.api.getDiscussionsByBlog({ 'tag':tag, 'limit':10 }),
+        'new': await steem.api.getDiscussionsByCreated({ 'tag':tag, 'limit':10 }),
+        'hot': await steem.api.getDiscussionsByHot({ 'tag':tag, 'limit':10 }),
+        'trend': await steem.api.getDiscussionsByTrending({ 'tag':tag, 'limit':10 })
     }
 
     return menu[category]
