@@ -1,6 +1,7 @@
-<p><center><img src="https://steemitimages.com/DQmfLTv5teUHGnXEJa1dkg1pU6WDoLLR5Czn3Tq9QgHjA9X/steemrss.png" /></center>
+<p align="center">
+  <img src="https://steemitimages.com/DQmfLTv5teUHGnXEJa1dkg1pU6WDoLLR5Czn3Tq9QgHjA9X/steemrss.png" />
 </p>
-<hr/>
+
 <h1>User Feed</h1>
 <blockquote>Get posts from your feeds or others' as well.</blockquote>
 <code>steemrss.com/feed/:username</code>
