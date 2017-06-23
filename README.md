@@ -29,7 +29,3 @@ https://steemrss.com/trend/:tag
 <li><a href="http://steemrss.com/new/steem">http://steemrss.com/trend/steemit</a></li>
 </ul>
 <hr/>
-
-<h2>P.S</h2>
-All codes are available in github repository, so feel free to send PRs and feedback!
-https://github.com/imkimchi/steemRSS
