@@ -28,4 +28,3 @@ https://steemrss.com/trend/:tag
 <li><a href="http://steemrss.com/new/bitcoin">http://steemrss.com/hot/steemit</a></li>
 <li><a href="http://steemrss.com/new/steem">http://steemrss.com/trend/steemit</a></li>
 </ul>
-<hr/>
