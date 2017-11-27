@@ -25,18 +25,22 @@ const rssGenerator = async (category, tag) => {
     return completedFeed.xml()
 }
 
+const methodMap = {
+    'feed': () => steem.api.getDiscussionsByFeed(query),
+    'blog': () => steem.api.getDiscussionsByBlog(query),
+    'new': () => steem.api.getDiscussionsByCreated(query),
+    'hot': () => steem.api.getDiscussionsByHot(query),
+    'trend': () => steem.api.getDiscussionsByTrending(query)
+}
+
 const getContent = async (category, tag) => {
     let query = { 'tag':tag, 'limit':10 }
     
-    let menu = {
-        'feed': () => steem.api.getDiscussionsByFeed(query),
-        'blog': () => steem.api.getDiscussionsByBlog(query),
-        'new': () => steem.api.getDiscussionsByCreated(query),
-        'hot': () => steem.api.getDiscussionsByHot(query),
-        'trend': () => steem.api.getDiscussionsByTrending(query)
+    if(methodMap.hashasOwnProperty(category)) {
+        return await menu[category]()
+    } else {
+        return Promise.reject(new Error("Unknown Category"));
     }
-
-    return await menu[category]()
 }
 
 const feedItem = async (feed, response) => {
