@@ -2,13 +2,6 @@ import Router from 'koa-router'
 import steem from 'steem'
 import RSS from 'rss'
 import xml from 'xml'
-import {promisify} from 'util'
-
-let getDiscussionsByCreated = promisify(steem.api.getDiscussionsByCreated);
-let getDiscussionsByFeed = promisify(steem.api.getDiscussionsByFeed);
-let getDiscussionsByBlog = promisify(steem.api.getDiscussionsByBlog);
-let getDiscussionsByHot = promisify(steem.api.getDiscussionsByHot);
-let getDiscussionsByTrending = promisify(steem.api.getDiscussionsByTrending);
 
 const router = new Router({ prefix: '' })
 
@@ -33,18 +26,18 @@ const rssGenerator = async (category, tag) => {
 }
 
 const methodMap = {
-    'feed': (query) => getDiscussionsByFeed(query),
-    'blog': (query) => getDiscussionsByBlog(query),
-    'new': (query) => getDiscussionsByCreated(query),
-    'hot': (query) => getDiscussionsByHot(query),
-    'trend': (query) => getDiscussionsByTrending(query)
+    'feed': () => steem.api.getDiscussionsByFeed(query),
+    'blog': () => steem.api.getDiscussionsByBlog(query),
+    'new': () => steem.api.getDiscussionsByCreated(query),
+    'hot': () => steem.api.getDiscussionsByHot(query),
+    'trend': () => steem.api.getDiscussionsByTrending(query)
 }
 
 const getContent = async (category, tag) => {
     let query = { 'tag':tag, 'limit':10 }
     
-    if(methodMap.hasOwnProperty(category)) {
-        return await methodMap[category](query)
+    if(methodMap.hashasOwnProperty(category)) {
+        return await menu[category]()
     } else {
         return Promise.reject(new Error("Unknown Category"));
     }
