@@ -4,23 +4,23 @@
 
 <h1>User Feed</h1>
 <blockquote>Get posts from your feeds or others' as well.</blockquote>
-<code>https://steemrss.com/feed/:username</code>
+<code>/feed/:username</code>
 <br/>
 <ul>
-<li><a href="steemrss.com/feed/philipkoon">steemrss.com/feed/philipkoon</a></li>
+<li><a href="steemrss.com/feed/philipkoon">https://steemrss.com/feed/philipkoon</a></li>
 </ul>
 <h1>Posts By Author</h1>
 <blockquote>Get posts from your favorite steemian.</blockquote>
-<code>>https://steemrss.com/blog/:username</code>
+<code>/blog/:username</code>
 <br/>
 <ul>
-<li><a href="steemrss.com/feed/philipkoon">>https://steemrss.com/feed/philipkoon</a></li>
+<li><a href="steemrss.com/feed/philipkoon">https://steemrss.com/feed/philipkoon</a></li>
 </ul>
 <h1>Posts by Tag</h1>
 <blockquote>Get posts by Tag, you can get posts by new/hot/trending</blockquote>
-<pre><code>https://steemrss.com/new/:tag
-https://steemrss.com/hot/:tag
-https://steemrss.com/trend/:tag
+<pre><code>/new/:tag
+/hot/:tag
+/trend/:tag
 </code></pre>
 <br/>
 <ul>
